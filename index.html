@@ -3,39 +3,225 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#063c3d">
-<title>Mijn trainingsschema</title>
+<title>Trainingsschema week 5–8</title>
 <style>
 :root{--ink:#102d2b;--muted:#667976;--line:#dbe5e2;--paper:#f3f7f5;--green:#0c655e;--lime:#d8f36a;--white:#fff;--shadow:0 12px 36px #163b3210}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .top{background:var(--ink);color:white;padding:38px 20px 72px}.top-inner,.wrap{max-width:900px;margin:auto}.eyebrow{color:var(--lime);font-weight:750;letter-spacing:.12em;text-transform:uppercase;font-size:.75rem}.top h1{font-size:clamp(2rem,7vw,3.3rem);line-height:1.05;letter-spacing:-.04em;margin:12px 0}.top p{color:#c7d7d2;margin:0;max-width:580px}.wrap{padding:0 16px 60px;margin-top:-43px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:white;border:1px solid var(--line);padding:14px 16px;border-radius:18px;box-shadow:var(--shadow);margin-bottom:14px}.datebox{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.datebox label{font-size:.78rem;color:var(--muted);font-weight:700}.datebox input{font:inherit;border:0;background:#f2f6f4;border-radius:10px;padding:9px 11px;color:var(--ink)}button{font:inherit;cursor:pointer;border:0}.export{background:var(--green);color:white;padding:12px 16px;border-radius:12px;font-weight:750;white-space:nowrap}.export:hover{background:#084d48}.hint{font-size:.84rem;color:var(--muted);margin:12px 5px 18px}.exercise{background:white;border:1px solid var(--line);border-radius:18px;margin:12px 0;overflow:hidden;box-shadow:0 5px 18px #163b3208}.exercise-head{padding:18px 18px 12px;display:flex;justify-content:space-between;gap:12px;align-items:start}.number{font-size:.75rem;color:var(--green);font-weight:800;letter-spacing:.08em}.exercise h2{margin:2px 0 0;font-size:1.22rem;letter-spacing:-.02em}.prescription{color:var(--muted);font-size:.86rem;margin-top:4px}.details{color:var(--green);font-size:.88rem;font-weight:700;background:none;padding:6px 0;text-align:right;flex-shrink:0}.details::after{content:'＋';margin-left:7px}.details[aria-expanded="true"]::after{content:'−'}.detail-content{padding:0 18px 16px;color:#425753;font-size:.9rem}.detail-content[hidden]{display:none}.detail-content p{margin:8px 0}.detail-content strong{color:var(--ink)}.sets{border-top:1px solid var(--line);padding:14px 18px 17px}.set-labels,.set-row{display:grid;grid-template-columns:56px 1fr 1fr;gap:10px;align-items:center}.set-labels{font-size:.73rem;color:var(--muted);font-weight:750;text-transform:uppercase;letter-spacing:.06em;margin:0 0 7px}.set-row{margin:7px 0}.set-name{font-weight:750;font-size:.9rem}.set-row input{min-width:0;width:100%;font:inherit;border:1px solid var(--line);border-radius:10px;background:#fbfdfc;padding:10px 11px;color:var(--ink)}.set-row input:focus,.datebox input:focus{outline:2px solid #75b9ad;outline-offset:1px}.unit{font-size:.75rem;color:var(--muted);font-weight:500}.footer{color:var(--muted);font-size:.8rem;text-align:center;padding:22px 0}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:11px 16px;border-radius:12px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s}.toast.show{opacity:1}
 @media(max-width:560px){.top{padding:28px 18px 64px}.wrap{padding:0 11px 40px}.toolbar{align-items:stretch;flex-direction:column}.export{width:100%}.exercise-head{padding:16px 15px 10px}.sets{padding:12px 15px 15px}.detail-content{padding:0 15px 13px}.set-labels,.set-row{grid-template-columns:48px 1fr 1fr;gap:7px}.set-row input{padding:10px 8px}.set-labels span:nth-child(2)::after{content:' (aantal)';text-transform:none;letter-spacing:0;font-weight:500}.set-labels span:nth-child(3)::after{content:' (kg)';text-transform:none;letter-spacing:0;font-weight:500}}
 @media print{.top{padding:20px}.wrap{margin:0 auto}.toolbar,.hint,.details,.footer{display:none}.exercise{break-inside:avoid}}
+
+.log-panel{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0}.log-panel h2{margin:0 0 12px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.actions button,.history button{padding:10px 14px;border-radius:10px;background:#e9f2ee;color:var(--ink);font-weight:650}.actions .primary{background:var(--green);color:white}.log-panel select{font:inherit;max-width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;background:white}.history article{padding:14px 0;border-top:1px solid var(--line)}.history summary{cursor:pointer}.history ul{padding-left:20px}.chart-wrap{overflow:auto}#chart{width:100%;min-width:450px;height:260px}.data-table{border-collapse:collapse;width:100%;font-size:.85rem}.data-table td,.data-table th{text-align:left;padding:8px;border-bottom:1px solid var(--line)}#logMessage{color:var(--green)}@media print{.actions,.history button{display:none}}
 </style>
 </head>
 <body>
-<header class="top"><div class="top-inner"><div class="eyebrow">Personal trainer project</div><h1>Mijn trainingsschema</h1><p>Vul na elke set je herhalingen en gewicht in. Je gegevens worden automatisch bewaard op dit toestel.</p></div></header>
+<header class="top"><div class="top-inner"><div class="eyebrow">Personal trainer project</div><h1>Trainingsschema week 5–8</h1><p>Vul na elke set je herhalingen en gewicht in. Je gegevens worden automatisch bewaard op dit toestel.</p></div></header>
 <main class="wrap">
-<section class="toolbar" aria-label="Training en export"><div class="datebox"><label for="trainingDate">Trainingsdatum</label><input id="trainingDate" type="date"><label for="trainingName">Training</label><input id="trainingName" type="text" value="Full body work-out" aria-label="Naam van de training"></div><button class="export" id="exportBtn">Download ingevulde training als PNG ↓</button></section>
-<p class="hint">Startgewichten en oefeningsuitleg vind je per oefening bij <strong>Meer info</strong>. Bij plank kan je het aantal seconden invullen bij reps.</p>
+<section class="toolbar" aria-label="Training en export"><div class="datebox"><label for="trainingDate">Trainingsdatum</label><input id="trainingDate" type="date"><label for="trainingName">Training</label><input id="trainingName" type="text" value="Full body work-out · week 5–8" aria-label="Naam van de training"></div><button class="export" id="exportBtn">Download ingevulde training als PNG ↓</button></section>
+<section class="exercise"><div class="detail-content" style="padding-top:12px"><p><strong>Opwarming:</strong> 5 minuten rustig op de crosstrainer of wandelen op de loopband.</p><p><strong>Aparte cardiodag:</strong> voer calf raises, hip abductor en hip adductor uit vóór je cardiotraining. Sets, herhalingen en gewichten voor deze drie oefeningen zijn niet opgegeven in dit tabblad.</p></div></section>
+<p class="hint">De voorgeschreven gewichten en oefeningsuitleg vind je bij <strong>Meer info</strong>. Bij dumbbelloefeningen noteer je het gewicht per dumbbell.</p>
+<div class="actions"><button id="saveTraining" class="primary">Training opslaan</button><button id="newTraining">Nieuwe training</button></div><p id="logMessage" role="status" aria-live="polite"></p>
 <div id="exerciseList"></div>
-<p class="footer">Train gecontroleerd en pas het gewicht aan als het te zwaar of te licht aanvoelt.</p>
+<section class="log-panel"><h2>Mijn progressie</h2><div class="actions"><label>Oefening <select id="chartExercise"></select></label><label>Meting <select id="chartMetric"><option value="max">Hoogste gewicht (kg)</option><option value="volume">Trainingsvolume (kg × reps)</option><option value="reps">Totaal herhalingen</option></select></label></div><p class="hint">Elke stip is één opgeslagen training. Bij dumbbells zijn gewicht en volume per dumbbell; lichaamsgewicht telt niet mee in het volume. Vul bij lichaamsgewicht 0 kg in.</p><div class="chart-wrap" id="chartArea"></div></section>
+<section class="log-panel"><h2>Trainingslogboek</h2><p class="hint">Je logboek staat in deze browser op dit toestel. Bewaar regelmatig een back-up en houd dit HTML-bestand op dezelfde plek. Een andere browser of bestandslocatie kan een apart logboek tonen.</p><div class="actions"><button id="backup">Back-up downloaden</button><button id="importBtn">Back-up importeren</button><input id="importFile" type="file" accept="application/json,.json" hidden></div><div id="history" class="history"></div></section>
+<section class="exercise"><div class="detail-content" style="padding-top:12px"><p><strong>Cooldown:</strong> 5 minuten rustig op de crosstrainer of wandelen op de loopband.</p></div></section><p class="footer">Train gecontroleerd en pas het gewicht aan als het te zwaar of te licht aanvoelt.</p>
 </main><div class="toast" id="toast" role="status">PNG gedownload</div>
 <script>
 const exercises=[
-{name:'Lat pulldown',muscles:'Brede rugspier (latissimus dorsi)',prescription:'2 sets · 8–10 herhalingen · 1–2 min rust',execution:['Rug recht en borst licht vooruit.','Trek de stang naar de borst.','Trek de ellebogen naar beneden en houd de schouders laag.','Breng de stang gecontroleerd terug omhoog.','Zwaai niet met je lichaam.'],easy:'Lat pulldown met smalle/neutrale greep.',hard:'Lat pulldown met brede greep.',extra:'Startgewicht: 40–45 kg. Materiaal: lat pulldownmachine met brede stang.'},
-{name:'Leg press',muscles:'Quadriceps (vierhoofdige dijspier)',prescription:'2 sets · 8–10 herhalingen · 1–2 min rust',execution:['Plaats je voeten op schouderbreedte.','Houd je knieën in lijn met je voeten.','Houd rug en bekken tegen de leuning.','Strek je knieën niet volledig.','Zak en duw gecontroleerd; laat je knieën niet naar binnen vallen.'],easy:'Leg press met kleinere bewegingsuitslag.',hard:'Leg press met grotere bewegingsuitslag.',extra:'Startgewicht: 80–100 kg. Materiaal: leg pressmachine.'},
-{name:'Pec deck fly',muscles:'Grote borstspier (pectoralis major)',prescription:'2 sets · 8–10 herhalingen · 1–2 min rust',execution:['Houd je rug tegen de leuning en je borst vooruit.','Houd je ellebogen licht gebogen.','Breng je armen gecontroleerd naar elkaar.','Keer gecontroleerd terug zonder met je lichaam mee te bewegen.'],easy:'Pec deck met één arm tegelijk.',hard:'Houd je armen tijdens de beweging langer gestrekt.',extra:'Startgewicht: 35–40 kg. Materiaal: pec deckmachine.'},
-{name:'Shoulder press machine',muscles:'Schouderspier (deltoideus)',prescription:'2 sets · 8–10 herhalingen · 1–2 min rust',execution:['Houd je rug tegen de leuning en je voeten stevig op de grond.','Plaats je ellebogen onder je handen.','Duw gecontroleerd omhoog en laat het gewicht rustig zakken.','Vergrendel je ellebogen niet volledig.'],easy:'Shoulder press met één arm tegelijk.',hard:'Shoulder press met dumbbells.',extra:'Startgewicht: 30 kg. Materiaal: shoulder pressmachine.'},
-{name:'Bulgarian split squat',muscles:'Quadriceps (vierhoofdige dijspier)',prescription:'2 sets · 8–10 herhalingen · 1–2 min rust',execution:['Plaats je voorste voet stevig op de grond.','Houd je knie in lijn met je voet en je romp rechtop.','Zak gecontroleerd en duw vanuit je voorste voet omhoog.','Houd je achterste been ontspannen.'],easy:'Split squat zonder verhoogd achterste been.',hard:'Vergroot de bewegingsuitslag.',extra:'Start met lichaamsgewicht. Materiaal: bankje; dumbbells om te verzwaren.'},
-{name:'Chest supported seated row',muscles:'Brede rugspier (latissimus dorsi)',prescription:'2 sets · 8–10 herhalingen · 1–2 min rust',execution:['Houd je rug recht en borst vooruit.','Houd je schouders laag.','Trek naar je buik met je ellebogen dicht langs je lichaam.','Keer gecontroleerd terug zonder te zwaaien.'],easy:'Seated cable row met kortere bewegingsuitslag.',hard:'Seated cable row met één arm tegelijk.',extra:'Startgewicht: 35 kg. Materiaal: seated cable rowmachine.'},
-{name:'Bicep curl',muscles:'Biceps brachii (tweehoofdige armspier)',prescription:'2 sets · 8–10 herhalingen · 1–2 min rust',execution:['Houd je ellebogen naast je lichaam en je rug recht.','Beweeg alleen je onderarmen.','Beweeg gecontroleerd omhoog en omlaag.','Zwaai niet met je lichaam.'],easy:'Biceps curl zittend met dumbbells.',hard:'Biceps curl met één arm tegelijk.',extra:'Startgewicht: 12 kg. Materiaal: cable machine met bar attachment.'},
-{name:'Tricep rope pushdown',muscles:'Triceps brachii (driehoofdige armspier)',prescription:'2 sets · 8–10 herhalingen · 1–2 min rust',execution:['Houd je ellebogen dicht bij je lichaam en je bovenarmen stil.','Houd je rug recht.','Duw gecontroleerd naar beneden en strek zonder te forceren.','Breng het touw gecontroleerd terug omhoog.'],easy:'Pushdown met kortere bewegingsuitslag.',hard:'Triceps pushdown met één arm tegelijk.',extra:'Startgewicht: 12,5 kg. Materiaal: cable machine met rope attachment.'},
-{name:'Plank',muscles:'Rechte buikspier (rectus abdominis)',prescription:'3 sets · 20 seconden · 1 min rust',execution:['Houd je lichaam in één rechte lijn.','Span je buik aan; laat je heupen niet zakken of te hoog komen.','Houd je hoofd neutraal en blijf rustig ademen.'],easy:'Plank op de knieën.',hard:'Plank met één been omhoog.',extra:'Start met lichaamsgewicht. Materiaal: matje.'}
+  {
+    "name": "Leg press",
+    "muscles": "Quadriceps (vierhoofdige dijspier)",
+    "prescription": "2 sets · 8–10 herhalingen · 1–2 min rust",
+    "sets": 2,
+    "execution": [
+      "Voeten op schouderbreedte.",
+      "Knieën in lijn met de voeten.",
+      "Rug en bekken tegen de leuning.",
+      "Knieën niet volledig strekken.",
+      "Gecontroleerd zakken en duwen.",
+      "Niet door de knieën laten inzakken."
+    ],
+    "easy": "Leg press met kleinere bewegingsuitslag.",
+    "hard": "one legged leg press",
+    "extra": "Gewicht: 130kg Materiaal: Leg press machine met gewichten"
+  },
+  {
+    "name": "Dumbbell bench press",
+    "muscles": "Pectoralis major (grote borstspier)",
+    "prescription": "2 sets · 8–10 herhalingen · 1–2 min rust",
+    "sets": 2,
+    "execution": [
+      "Voeten stevig op de grond.",
+      "Rug en bekken tegen het bankje.",
+      "Schouderbladen naar achteren en beneden.",
+      "Polsen recht houden.",
+      "Ellebogen licht naar buiten gericht.",
+      "Dumbbells gecontroleerd laten zakken.",
+      "Dumbbells gecontroleerd omhoog duwen.",
+      "Armen bovenaan niet volledig overstrekken"
+    ],
+    "easy": "Chest press machine.",
+    "hard": "Dumbbell bench press op een instabiele ondergrond.",
+    "extra": "Gewicht: 2 dumbbells van 14kg Materiaal: Bench, dumbbells"
+  },
+  {
+    "name": "Lat pulldown",
+    "muscles": "Brede rugspier (latissimus dorsi)",
+    "prescription": "2 sets · 8–10 herhalingen · 1–2 min rust",
+    "sets": 2,
+    "execution": [
+      "Rug recht en borst licht vooruit.",
+      "Trek de stang naar de borst.",
+      "Ellebogen naar beneden trekken.",
+      "Schouders laag houden.",
+      "Gecontroleerd terug omhoog.",
+      "Niet met het lichaam zwaaien."
+    ],
+    "easy": "Lat pulldown met smalle/neutrale greep.",
+    "hard": "Lat pulldown met brede greep.",
+    "extra": "Gewicht: 59kg Materiaal: Latt puldown machine met een brede baar"
+  },
+  {
+    "name": "Bulgarian split squat",
+    "muscles": "Quadriceps (vierhoofdige dijspier)",
+    "prescription": "2 sets · 8–10 herhalingen · 1–2 min rust",
+    "sets": 2,
+    "execution": [
+      "Voorste voet stevig op de grond.",
+      "Knie blijft in lijn met de voet.",
+      "Romp rechtop houden.",
+      "Gecontroleerd zakken.",
+      "Duw vanuit de voorste voet omhoog.",
+      "Achterste been blijft ontspannen."
+    ],
+    "easy": "Bulgarian split squat zonder verhoogd achterste been.",
+    "hard": "Met extra gewicht (dumbbell vasthouden)",
+    "extra": "Gewicht: 5kg, Materiaal: een bankje, dumbbells voor zwaarder gewicht"
+  },
+  {
+    "name": "Chest supported seated row",
+    "muscles": "Brede rugspier (latissimus dorsi)",
+    "prescription": "2 sets · 8–10 herhalingen · 1–2 min rust",
+    "sets": 2,
+    "execution": [
+      "Rug recht en borst vooruit.",
+      "Schouders laag houden.",
+      "Trek naar de buik.",
+      "Ellebogen dicht langs het lichaam.",
+      "Gecontroleerd terugkeren.",
+      "Niet met het lichaam zwaaien."
+    ],
+    "easy": "Seated cable row met een kortere bewegingsuitslag.",
+    "hard": "Seated cable row met één arm tegelijk.",
+    "extra": "Gewicht: 45kg 1x, 52kg 1x Materiaal: Chest supported seated row"
+  },
+  {
+    "name": "Dumbbell shoulder press",
+    "muscles": "Deltoideus (deltaspier), voornamelijk de voorste schouderkop (pars anterior).",
+    "prescription": "2 sets · 8–10 herhalingen · 1–2 min rust",
+    "sets": 2,
+    "execution": [
+      "Voeten stevig op de grond.",
+      "Rug tegen de leuning.",
+      "Buikspieren aanspannen.",
+      "Polsen recht houden.",
+      "Ellebogen onder de dumbbells houden.",
+      "Dumbbells gecontroleerd laten zakken.",
+      "Dumbbells gecontroleerd omhoog duwen.",
+      "Onderrug niet overdreven hol trekken."
+    ],
+    "easy": "Shoulder press machine.",
+    "hard": "Standing dumbbell shoulder press.",
+    "extra": "Gewicht: 16kg per dumbbell Materiaal: Bench, dumbbells"
+  },
+  {
+    "name": "Preacher curl",
+    "muscles": "Biceps brachii (tweehoofdige bovenarmspier)",
+    "prescription": "2 sets · 8–10 herhalingen · 1–2 min rust",
+    "sets": 2,
+    "execution": [
+      "Bovenarmen op de leuning plaatsen.",
+      "Oksels tegen de bovenkant van de leuning houden.",
+      "Rug recht houden.",
+      "Polsen recht houden.",
+      "Elle bogen op dezelfde plaats houden.",
+      "Gewicht gecontroleerd laten zakken.",
+      "Armen niet volledig overstrekken.",
+      "Gewicht gecontroleerd omhoog curlen."
+    ],
+    "easy": "Bicep curl met twee handen aan de kabel.",
+    "hard": "Single-arm preacher curl.",
+    "extra": "Gewicht 32kg, Materiaal: Preacher curl machine of bench en dumbbell hier (10kg dumbbell)"
+  },
+  {
+    "name": "Tricep overhead extension",
+    "muscles": "Triceps brachii (driehoofdige bovenarmspier), voornamelijk de lange kop (caput longum)",
+    "prescription": "2 sets · 8–10 herhalingen · 1–2 min rust",
+    "sets": 2,
+    "execution": [
+      "Armen boven het hoofd houden.",
+      "Elle bogen naar voren gericht houden.",
+      "Bovenarmen zo stil mogelijk houden.",
+      "Rug recht houden.",
+      "Buikspieren aanspannen.",
+      "Gewicht gecontroleerd achter het hoofd laten zakken.",
+      "Elle bogen niet overdreven naar buiten laten wijzen.",
+      "Armen gecontroleerd uitstrekken."
+    ],
+    "easy": "Tricep pushdown aan de kabel.",
+    "hard": "Single-arm overhead tricep extension.",
+    "extra": "Gewicht: 13,5kg Materiaal: Cable met rope of driehoek attetchment"
+  },
+  {
+    "name": "Incline sit-ups",
+    "muscles": "Rectus abdominis (rechte buikspier)",
+    "prescription": "3 sets · 12–15 herhalingen · 1–2 min rust",
+    "sets": 3,
+    "execution": [
+      "Rug tegen het schuine bankje plaatsen.",
+      "Voeten stevig achter de voetsteunen haken.",
+      "Handen gekruist op de borst houden.",
+      "Buikspieren aanspannen.",
+      "Bovenlichaam gecontroleerd omhoog brengen.",
+      "Onderrug niet overdreven hol trekken.",
+      "Gecontroleerd terugzakken.",
+      "Niet trekken aan de nek."
+    ],
+    "easy": "Crunches op een vlakke mat.",
+    "hard": "Incline sit-ups met een gewichtsschijf tegen de borst.",
+    "extra": "Gewicht: lichaamsgewicht Materiaal: Schuine bench"
+  }
 ];
 const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const list=document.getElementById('exerciseList');
-exercises.forEach((e,i)=>{const card=document.createElement('article');card.className='exercise';card.innerHTML=`<div class="exercise-head"><div><div class="number">OEFENING ${String(i+1).padStart(2,'0')}</div><h2>${safe(e.name)}</h2><div class="prescription">${safe(e.prescription)}</div></div><button class="details" aria-expanded="false" type="button">Meer info</button></div><div class="detail-content" hidden><p><strong>Hoofdspieren:</strong> ${safe(e.muscles)}</p><p><strong>Uitvoering:</strong></p><ul>${e.execution.map(x=>`<li>${safe(x)}</li>`).join('')}</ul><p><strong>Makkelijker:</strong> ${safe(e.easy)}</p><p><strong>Moeilijker:</strong> ${safe(e.hard)}</p><p><strong>Extra:</strong> ${safe(e.extra)}</p></div><div class="sets"><div class="set-labels"><span>Set</span><span>Reps <i class="unit">/ sec</i></span><span>Gewicht <i class="unit">kg</i></span></div>${[1,2,3].map(n=>`<label class="set-row"><span class="set-name">${n}</span><input type="number" min="0" step="1" inputmode="numeric" aria-label="${safe(e.name)} set ${n} reps" data-ex="${i}" data-set="${n}" data-key="reps" placeholder="—"><input type="number" min="0" step="0.5" inputmode="decimal" aria-label="${safe(e.name)} set ${n} gewicht in kilogram" data-ex="${i}" data-set="${n}" data-key="weight" placeholder="—"></label>`).join('')}</div>`;list.appendChild(card)});
+exercises.forEach((e,i)=>{const card=document.createElement('article');card.className='exercise';card.innerHTML=`<div class="exercise-head"><div><div class="number">OEFENING ${String(i+1).padStart(2,'0')}</div><h2>${safe(e.name)}</h2><div class="prescription">${safe(e.prescription)}</div></div><button class="details" aria-expanded="false" type="button">Meer info</button></div><div class="detail-content" hidden><p><strong>Hoofdspieren:</strong> ${safe(e.muscles)}</p><p><strong>Uitvoering:</strong></p><ul>${e.execution.map(x=>`<li>${safe(x)}</li>`).join('')}</ul><p><strong>Makkelijker:</strong> ${safe(e.easy)}</p><p><strong>Moeilijker:</strong> ${safe(e.hard)}</p><p><strong>Extra:</strong> ${safe(e.extra)}</p></div><div class="sets"><div class="set-labels"><span>Set</span><span>Reps</span><span>Gewicht <i class="unit">kg</i></span></div>${Array.from({length:3},(_,j)=>j+1).map(n=>`<label class="set-row"><span class="set-name">${n}</span><input type="number" min="0" step="1" inputmode="numeric" aria-label="${safe(e.name)} set ${n} reps" data-ex="${i}" data-set="${n}" data-key="reps" placeholder="—"><input type="number" min="0" step="0.5" inputmode="decimal" aria-label="${safe(e.name)} set ${n} gewicht in kilogram" data-ex="${i}" data-set="${n}" data-key="weight" placeholder="—"></label>`).join('')}</div>`;list.appendChild(card)});
 document.querySelectorAll('.details').forEach(b=>b.addEventListener('click',()=>{const d=b.closest('.exercise').querySelector('.detail-content');const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));d.hidden=open}));
-const storageKey='pxl-training-v1';function save(){const vals={date:document.querySelector('#trainingDate').value,name:document.querySelector('#trainingName').value,fields:{}};document.querySelectorAll('[data-ex]').forEach(x=>vals.fields[`${x.dataset.ex}-${x.dataset.set}-${x.dataset.key}`]=x.value);localStorage.setItem(storageKey,JSON.stringify(vals))}function restore(){try{const v=JSON.parse(localStorage.getItem(storageKey)||'{}');if(v.date)document.querySelector('#trainingDate').value=v.date;if(v.name)document.querySelector('#trainingName').value=v.name;document.querySelectorAll('[data-ex]').forEach(x=>x.value=v.fields?.[`${x.dataset.ex}-${x.dataset.set}-${x.dataset.key}`]||'')}catch{}}restore();document.querySelectorAll('input').forEach(x=>x.addEventListener('input',save));
-function png(){save();const date=document.querySelector('#trainingDate').value;const title=document.querySelector('#trainingName').value||'Training';const W=1200,pad=64,scale=2;const visible=exercises.map((e,i)=>({e,i,sets:[1,2,3].map(n=>({r:document.querySelector(`[data-ex="${i}"][data-set="${n}"][data-key="reps"]`).value,w:document.querySelector(`[data-ex="${i}"][data-set="${n}"][data-key="weight"]`).value})).filter(s=>s.r||s.w)})).filter(x=>x.sets.length);const rowH=70,cardH=126,headerH=290,footerH=90,H=headerH+visible.length*cardH+footerH;const c=document.createElement('canvas');c.width=W*scale;c.height=H*scale;const x=c.getContext('2d');x.scale(scale,scale);x.fillStyle='#f3f7f5';x.fillRect(0,0,W,H);x.fillStyle='#102d2b';x.fillRect(0,0,W,230);x.fillStyle='#d8f36a';x.font='700 19px system-ui';x.fillText('PERSONAL TRAINER PROJECT',pad,62);x.fillStyle='white';x.font='700 48px system-ui';x.fillText(title,pad,125);x.fillStyle='#c7d7d2';x.font='400 22px system-ui';x.fillText(date?new Date(date+'T12:00:00').toLocaleDateString('nl-BE',{day:'numeric',month:'long',year:'numeric'}):'Trainingsdatum niet ingevuld',pad,170);x.fillStyle='#fff';x.font='600 18px system-ui';x.fillText('OEFENING',pad,215);x.fillText('SET',630,215);x.fillText('REPS / SEC',720,215);x.fillText('GEWICHT (KG)',920,215);let y=headerH;visible.forEach(({e,i,sets},idx)=>{x.fillStyle='#fff';roundRect(x,pad,y,W-pad*2,cardH-12,16);x.fill();x.fillStyle='#0c655e';x.font='700 14px system-ui';x.fillText(`OEFENING ${String(i+1).padStart(2,'0')}`,pad+20,y+27);x.fillStyle='#102d2b';x.font='700 23px system-ui';x.fillText(e.name,pad+20,y+57);x.fillStyle='#667976';x.font='400 15px system-ui';x.fillText(e.muscles, pad+20,y+83);sets.forEach((s,j)=>{const yy=y+35+j*25;x.fillStyle='#102d2b';x.font='600 17px system-ui';x.fillText(String(j+1),645,yy);x.font='500 17px system-ui';x.fillText(s.r||'—',755,yy);x.fillText(s.w?s.w+' kg':'—',950,yy)});y+=cardH});x.fillStyle='#667976';x.font='400 15px system-ui';x.fillText('Train gecontroleerd · Gegevens ingevuld door jou',pad,H-38);const a=document.createElement('a');a.download=`training-${date||'schema'}.png`;a.href=c.toDataURL('image/png');a.click();const t=document.querySelector('#toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}document.querySelector('#exportBtn').addEventListener('click',png);
+const storageKey='pxl-training-week5-8-v1';function save(){const vals={date:document.querySelector('#trainingDate').value,name:document.querySelector('#trainingName').value,fields:{}};document.querySelectorAll('[data-ex]').forEach(x=>vals.fields[`${x.dataset.ex}-${x.dataset.set}-${x.dataset.key}`]=x.value);try{localStorage.setItem(storageKey,JSON.stringify(vals))}catch{document.querySelector('#logMessage').textContent='Bewaren is niet gelukt. Controleer je browseropslag en download een back-up.'}}function restore(){try{const v=JSON.parse(localStorage.getItem(storageKey)||'{}');if(v.date)document.querySelector('#trainingDate').value=v.date;if(v.name)document.querySelector('#trainingName').value=v.name;document.querySelectorAll('[data-ex]').forEach(x=>x.value=v.fields?.[`${x.dataset.ex}-${x.dataset.set}-${x.dataset.key}`]||'')}catch{}}restore();document.querySelectorAll('input').forEach(x=>x.addEventListener('input',save));
+function png(){save();const date=document.querySelector('#trainingDate').value;const title=document.querySelector('#trainingName').value||'Training';const W=1200,pad=64,scale=2;const visible=exercises.map((e,i)=>({e,i,sets:Array.from({length:3},(_,j)=>j+1).map(n=>({n,r:document.querySelector(`[data-ex="${i}"][data-set="${n}"][data-key="reps"]`).value,w:document.querySelector(`[data-ex="${i}"][data-set="${n}"][data-key="weight"]`).value})).filter(s=>s.r||s.w)})).filter(x=>x.sets.length);const rowH=70,cardH=126,headerH=290,footerH=90,H=headerH+visible.length*cardH+footerH;const c=document.createElement('canvas');c.width=W*scale;c.height=H*scale;const x=c.getContext('2d');x.scale(scale,scale);x.fillStyle='#f3f7f5';x.fillRect(0,0,W,H);x.fillStyle='#102d2b';x.fillRect(0,0,W,230);x.fillStyle='#d8f36a';x.font='700 19px system-ui';x.fillText('PERSONAL TRAINER PROJECT',pad,62);x.fillStyle='white';x.font='700 48px system-ui';x.fillText(title,pad,125);x.fillStyle='#c7d7d2';x.font='400 22px system-ui';x.fillText(date?new Date(date+'T12:00:00').toLocaleDateString('nl-BE',{day:'numeric',month:'long',year:'numeric'}):'Trainingsdatum niet ingevuld',pad,170);x.fillStyle='#fff';x.font='600 18px system-ui';x.fillText('OEFENING',pad,215);x.fillText('SET',630,215);x.fillText('REPS',720,215);x.fillText('GEWICHT (KG)',920,215);let y=headerH;visible.forEach(({e,i,sets},idx)=>{x.fillStyle='#fff';roundRect(x,pad,y,W-pad*2,cardH-12,16);x.fill();x.fillStyle='#0c655e';x.font='700 14px system-ui';x.fillText(`OEFENING ${String(i+1).padStart(2,'0')}`,pad+20,y+27);x.fillStyle='#102d2b';x.font='700 23px system-ui';x.fillText(e.name,pad+20,y+57,500);x.fillStyle='#667976';x.font='400 15px system-ui';x.fillText(e.muscles, pad+20,y+83,500);sets.forEach((s,j)=>{const yy=y+35+j*25;x.fillStyle='#102d2b';x.font='600 17px system-ui';x.fillText(String(s.n),645,yy);x.font='500 17px system-ui';x.fillText(s.r||'—',755,yy);x.fillText(s.w?s.w+' kg':'—',950,yy)});y+=cardH});x.fillStyle='#667976';x.font='400 15px system-ui';x.fillText('Train gecontroleerd · Gegevens ingevuld door jou',pad,H-38);const a=document.createElement('a');a.download=`training-${date||'schema'}.png`;a.href=c.toDataURL('image/png');a.click();const t=document.querySelector('#toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}document.querySelector('#exportBtn').addEventListener('click',png);
+const logKey='pxl-training-history-v1';
+let history=[],editingId=null;
+const $=s=>document.querySelector(s);
+const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const message=t=>$('#logMessage').textContent=t;
+try{history=JSON.parse(localStorage.getItem(logKey)||'[]');if(!Array.isArray(history))throw Error()}catch{message('Het logboek kon niet worden gelezen. Importeer indien nodig je back-up.');history=[]}
+try{const id=localStorage.getItem(logKey+'-editing');if(history.some(h=>h.id===id)){editingId=id;$('#saveTraining').textContent='Wijzigingen opslaan'}}catch{}
+if(!$('#trainingDate').value)$('#trainingDate').value=today();
+const fmt=n=>new Intl.NumberFormat('nl-BE',{maximumFractionDigits:1}).format(n);
+function persist(next){try{localStorage.setItem(logKey,JSON.stringify(next));history=next;return true}catch{message('Opslaan mislukt: browseropslag is niet beschikbaar of vol. Download een back-up.');return false}}
+function capture(){return exercises.map((e,i)=>({name:e.name,sets:Array.from({length:3},(_,j)=>{const n=j+1;return {n,reps:$(`[data-ex="${i}"][data-set="${n}"][data-key="reps"]`).value,weight:$(`[data-ex="${i}"][data-set="${n}"][data-key="weight"]`).value}}).filter(x=>x.reps!==''||x.weight!=='')})).filter(e=>e.sets.length)}
+$('#saveTraining').onclick=()=>{const entries=capture();try{const id=localStorage.getItem(logKey+'-editing');if(history.some(h=>h.id===id)){editingId=id;$('#saveTraining').textContent='Wijzigingen opslaan'}}catch{}
+if(!$('#trainingDate').value)return message('Kies eerst een trainingsdatum.');if(!entries.length)return message('Vul eerst minstens één set in.');if(entries.some(e=>e.sets.some(s=>s.reps===''||s.weight===''||!Number.isFinite(+s.reps)||!Number.isFinite(+s.weight)||+s.reps<=0||!Number.isInteger(+s.reps)||+s.weight<0)))return message('Vul voor elke gebruikte set herhalingen en gewicht in. Gebruik 0 kg voor lichaamsgewicht.');const record={id:editingId||crypto.randomUUID(),date:$('#trainingDate').value,name:$('#trainingName').value.trim()||'Training',exercises:entries};const next=history.filter(h=>h.id!==record.id).concat(record);if(persist(next)){editingId=record.id;try{localStorage.setItem(logKey+'-editing',editingId)}catch{}$('#saveTraining').textContent='Wijzigingen opslaan';save();render();message('Training opgeslagen. Klik op Nieuwe training voor je volgende sessie.')}};
+$('#newTraining').onclick=()=>{if(capture().length&&!confirm('Een nieuwe training starten? Niet-opgeslagen wijzigingen worden gewist.'))return;editingId=null;try{localStorage.removeItem(logKey+'-editing')}catch{}document.querySelectorAll('[data-ex]').forEach(x=>x.value='');$('#trainingDate').value=today();$('#saveTraining').textContent='Training opslaan';save();message('Nieuwe training klaar.');};
+function render(){renderHistory();renderChart()}
+function renderHistory(){const root=$('#history');root.innerHTML='';if(!history.length){root.textContent='Nog geen trainingen opgeslagen.';return}for(const h of [...history].sort((a,b)=>b.date.localeCompare(a.date))){const a=document.createElement('article');a.innerHTML=`<details><summary><strong>${safe(h.date)}</strong> · ${safe(h.name)} · ${h.exercises.length} oefeningen</summary><ul>${h.exercises.map(e=>`<li><strong>${safe(e.name)}</strong>: ${e.sets.map(s=>`set ${s.n}: ${safe(s.reps)} × ${safe(s.weight)} kg`).join(' · ')}</li>`).join('')}</ul></details><div class="actions"><button class="edit">Bekijken / aanpassen</button><button class="delete">Verwijderen</button></div>`;a.querySelector('.edit').onclick=()=>{if(capture().length&&!confirm('Deze training openen? Niet-opgeslagen wijzigingen worden vervangen.'))return;editingId=h.id;try{localStorage.setItem(logKey+'-editing',editingId)}catch{}$('#trainingDate').value=h.date;$('#trainingName').value=h.name;document.querySelectorAll('[data-ex]').forEach(x=>{const entry=h.exercises.find(e=>e.name===exercises[+x.dataset.ex].name);const set=entry?.sets.find(s=>s.n===+x.dataset.set);x.value=set?.[x.dataset.key]??''});$('#saveTraining').textContent='Wijzigingen opslaan';save();message('Opgeslagen training geopend.');window.scrollTo({top:0,behavior:'smooth'})};a.querySelector('.delete').onclick=()=>{if(confirm('Deze opgeslagen training verwijderen?')&&persist(history.filter(x=>x.id!==h.id))){if(editingId===h.id){editingId=null;$('#saveTraining').textContent='Training opslaan'}render();message('Training verwijderd.')}};root.appendChild(a)}}
+$('#chartExercise').innerHTML=exercises.map(e=>`<option>${safe(e.name)}</option>`).join('');
+$('#chartExercise').value='Leg press';
+function renderChart(){const name=$('#chartExercise').value,metric=$('#chartMetric').value;const points=[...history].sort((a,b)=>a.date.localeCompare(b.date)).flatMap(h=>{const e=h.exercises.find(e=>e.name===name);if(!e)return [];const value=metric==='max'?Math.max(...e.sets.map(s=>+s.weight)):metric==='volume'?e.sets.reduce((n,s)=>n+(+s.reps)*(+s.weight),0):e.sets.reduce((n,s)=>n+(+s.reps),0);return [{date:h.date,name:h.name,value}]});const area=$('#chartArea');if(!points.length){area.textContent='Sla een training met deze oefening op om je progressie te bekijken.';return}const W=760,H=260,L=65,R=25,T=25,B=45,max=Math.max(1,...points.map(p=>p.value))*1.1;const px=i=>points.length===1?(W+L-R)/2:L+i*(W-L-R)/(points.length-1),py=v=>H-B-v/max*(H-T-B);let svg=`<svg id="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Progressie ${safe(name)}. De exacte waarden staan in de tabel hieronder.">`;for(let i=0;i<=4;i++){const v=max*i/4,y=py(v);svg+=`<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="#dbe5e2"/><text x="${L-10}" y="${y+5}" text-anchor="end" fill="#667976" font-size="12">${fmt(v)}</text>`}svg+=`<polyline points="${points.map((p,i)=>`${px(i)},${py(p.value)}`).join(' ')}" fill="none" stroke="#0c655e" stroke-width="3"/>`;points.forEach((p,i)=>{svg+=`<circle cx="${px(i)}" cy="${py(p.value)}" r="5" fill="#0c655e"><title>${safe(p.date)}: ${fmt(p.value)}</title></circle>`;if(i===0||i===points.length-1||points.length<5)svg+=`<text x="${px(i)}" y="${H-15}" text-anchor="middle" fill="#667976" font-size="12">${safe(p.date.slice(5))}</text>`});area.innerHTML=svg+'</svg>'+`<table class="data-table"><thead><tr><th>Datum</th><th>Training</th><th>${safe($('#chartMetric').selectedOptions[0].textContent)}</th></tr></thead><tbody>${points.map(p=>`<tr><td>${safe(p.date)}</td><td>${safe(p.name)}</td><td>${fmt(p.value)}</td></tr>`).join('')}</tbody></table>`}
+$('#chartExercise').onchange=renderChart;$('#chartMetric').onchange=renderChart;
+$('#backup').onclick=()=>{const blob=new Blob([JSON.stringify({format:'pxl-training-log',version:1,trainings:history},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`trainingslogboek-${today()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+$('#importBtn').onclick=()=>$('#importFile').click();
+function validateBackup(data){if(data?.format!=='pxl-training-log'||data.version!==1||!Array.isArray(data.trainings)||data.trainings.length>10000)throw Error();const ids=new Set();for(const h of data.trainings){if(typeof h.id!=='string'||!h.id||ids.has(h.id)||typeof h.name!=='string'||h.name.length>500||typeof h.date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(h.date)||!Number.isFinite(Date.parse(h.date))||!Array.isArray(h.exercises)||!h.exercises.length||h.exercises.length>100)throw Error();ids.add(h.id);for(const e of h.exercises){if(typeof e.name!=='string'||e.name.length>200||!Array.isArray(e.sets)||!e.sets.length||e.sets.length>3)throw Error();const nums=new Set();for(const s of e.sets){if(![1,2,3].includes(s.n)||nums.has(s.n)||s.reps===''||s.weight===''||!['number','string'].includes(typeof s.reps)||!['number','string'].includes(typeof s.weight)||!Number.isInteger(+s.reps)||+s.reps<=0||!Number.isFinite(+s.weight)||+s.weight<0)throw Error();nums.add(s.n)}}}return data.trainings}
+$('#importFile').onchange=async ev=>{const file=ev.target.files[0];if(!file)return;try{if(file.size>10000000)throw Error();const incoming=validateBackup(JSON.parse(await file.text()));const known=new Set(history.map(h=>h.id));const additions=incoming.filter(h=>!known.has(h.id));if(persist(history.concat(additions))){render();message(`${additions.length} trainingen toegevoegd. Bestaande trainingen met hetzelfde ID zijn behouden.`)}}catch{message('Ongeldige back-up. Kies een JSON-back-up die je via deze pagina hebt gedownload.')}finally{ev.target.value=''}};
+render();
+
 </script></body></html>
